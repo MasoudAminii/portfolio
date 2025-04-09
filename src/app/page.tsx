@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div className="container mx-auto">
       <HeroSection />
-      <AboutSection />
+      {/* <AboutSection /> */}
     </div>
   );
 }
