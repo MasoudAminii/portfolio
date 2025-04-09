@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #000000; /* Black */
+  --secondary-color: #f1f3f4;
+  --accent-color: #00acc1; /* Vibrant cyan for a modern, tech-inspired feel */
+}
+
+.dark {
+  --primary-color: #f1f3f4;
+  --secondary-color: #212121;
+  --accent-color: #4dd0e1; /* A lighter cyan for a complementary dark theme */
+}
+
+.btn {
+  @apply mt-10 cursor-pointer rounded-full px-8 py-4 font-bold uppercase transition duration-300 ease-in-out;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
