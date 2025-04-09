@@ -9,7 +9,7 @@ export default function Home() {
 
 function HeroSection() {
   return (
-    <section className="flex min-h-full flex-col items-center justify-center px-4 py-14 text-[var(--primary-color)] md:py-42">
+    <section className="flex min-h-full flex-col items-center justify-center px-4 py-14 text-[var(--primary-color)] md:py-28">
       {/* Main Headlines */}
       <h1 className="text-center text-5xl font-extrabold md:text-7xl">
         Elevate Your Business Online
