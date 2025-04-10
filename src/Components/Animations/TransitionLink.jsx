@@ -21,7 +21,7 @@ const TransitionLink = ({ children, href, ...props }) => {
     document.body.classList.add("page-transition-out");
 
     // Wait for the fade-out effect to finish (sync with CSS duration)
-    await sleep(200);
+    await sleep(300);
 
     router.push(href);
 
