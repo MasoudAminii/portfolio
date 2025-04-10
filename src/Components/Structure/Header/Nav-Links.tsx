@@ -1,8 +1,7 @@
 "use client";
-import Link from "next/link";
+import TransitionLink from "@/Components/Animations/TransitionLink";
 import { usePathname } from "next/navigation";
 import ThemeChange from "../ThemeChange";
-import TransitionLink from "@/Components/Animations/TransitionLink";
 
 export default function NavLinks() {
   const pathname = usePathname();

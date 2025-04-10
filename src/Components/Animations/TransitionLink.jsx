@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 const TransitionLink = ({ children, href, ...props }) => {
   const router = useRouter();
