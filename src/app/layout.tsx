@@ -25,10 +25,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className}`}>
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-          <div className="flex min-h-screen flex-col justify-between bg-[var(--secondary-color)] transition-all duration-300">
+          <div className="flex min-h-screen flex-col justify-between bg-[var(--secondary-color)] transition-colors duration-200 ease-linear">
             <MouseBorder />
             <div>
-              <header className="mx-4">
+              <header className="fixed top-0 left-1/2 z-50 w-full -translate-x-1/2 px-4">
                 <Header />
               </header>
               <main>{children}</main>

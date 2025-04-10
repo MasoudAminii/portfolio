@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/Components/Structure/Mouse.jsx", "src/Components/Structure/ThemeChange.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/Components/Structure/Mouse.jsx", "src/Components/Structure/ThemeChange.jsx", "src/app/template.tsx", "src/Components/Animations/TransitionLink.jsx"],
   "exclude": ["node_modules"]
 }

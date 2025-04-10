@@ -3,13 +3,49 @@
 :root {
   --primary-color: #000000; /* Black */
   --secondary-color: #f1f3f4;
-  --accent-color: #00acc1; /* Vibrant cyan for a modern, tech-inspired feel */
+  --accent-color: #2563eb; /* Vibrant blue for a modern, tech-inspired feel */
+  --from: #f9fafb; /* Light mode gradient */
+  --to: #ffffff;
+  --text-light: #333333;
+  --bg-light: #00000033;
 }
 
 .dark {
   --primary-color: #f1f3f4;
   --secondary-color: #212121;
-  --accent-color: #4dd0e1; /* A lighter cyan for a complementary dark theme */
+  --accent-color: #ff3a5e; /* Vibrant red for dark theme */
+  --gradiant-from: #111827;
+  --gradiant-to: #000000;
+  --text-light: #f5f5f5; /* A subtle "light white" for text in dark mode */
+  --bg-light: #ffffff33;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  transition-property: opacity, filter, background;
+  background: var(--secondary-color);
+  transition-timing-function: linear;
+  transition-duration: 300ms;
+}
+
+/* Transition-out state: triggers fade out effect */
+.page-transition-out {
+  opacity: 0;
+  filter: blur(20px);
+}
+
+::selection {
+  background-color: var(--accent-color); /* desired background color */
+  color: var(--primary-color); /* desired text color */
+}
+
+/* For Mozilla Firefox */
+::-moz-selection {
+  background-color: var(--accent-color); /* desired background color */
+  color: var(--primary-color); /* desired text color */
 }
 
 .btn {
@@ -23,4 +59,3 @@
   background-color: var(--primary-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-

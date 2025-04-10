@@ -32,8 +32,9 @@ const MouseBorder = () => {
   // Update mouse position and hover state
   const handleMouseMove = useCallback((e) => {
     targetPos.current = { x: e.clientX, y: e.clientY };
+    // Check if the hovered element is interactive
     const isInteractive = e.target.closest(
-      "a, button, [role='button'], input, select, textarea"
+      "a, button, [role='button'], input, select, textarea",
     );
     setIsHoveringLink(!!isInteractive);
   }, []);
@@ -64,13 +65,13 @@ const MouseBorder = () => {
   useEffect(() => {
     let animationFrameId;
     const animate = () => {
-      const darkModeEnabled = document.documentElement.classList.contains("dark");
-
       // Smoothly interpolate positions
       currentCirclePos.current.x +=
-        (targetPos.current.x - currentCirclePos.current.x) * easingFactors.circlePos;
+        (targetPos.current.x - currentCirclePos.current.x) *
+        easingFactors.circlePos;
       currentCirclePos.current.y +=
-        (targetPos.current.y - currentCirclePos.current.y) * easingFactors.circlePos;
+        (targetPos.current.y - currentCirclePos.current.y) *
+        easingFactors.circlePos;
       currentDotPos.current.x +=
         (targetPos.current.x - currentDotPos.current.x) * easingFactors.dotPos;
       currentDotPos.current.y +=
@@ -78,11 +79,13 @@ const MouseBorder = () => {
 
       // Interpolate sizes and opacity
       currentCircleSize.current +=
-        (targetCircleSize.current - currentCircleSize.current) * easingFactors.size;
+        (targetCircleSize.current - currentCircleSize.current) *
+        easingFactors.size;
       currentDotSize.current +=
         (targetDotSize.current - currentDotSize.current) * easingFactors.size;
       currentBorderOpacity.current +=
-        (targetBorderOpacity.current - currentBorderOpacity.current) * easingFactors.opacity;
+        (targetBorderOpacity.current - currentBorderOpacity.current) *
+        easingFactors.opacity;
 
       const currentHalfCircle = Math.max(currentCircleSize.current / 2, 0.1);
       const currentHalfDot = currentDotSize.current / 2;
@@ -93,23 +96,21 @@ const MouseBorder = () => {
         circleRef.current.style.height = `${Math.max(currentCircleSize.current, 0)}px`;
         circleRef.current.style.transform = `translate(${currentCirclePos.current.x - currentHalfCircle}px, ${currentCirclePos.current.y - currentHalfCircle}px)`;
         circleRef.current.style.opacity = currentBorderOpacity.current;
-        const borderWidth = Math.max(1.5 * (currentCircleSize.current / 100), 0.5);
+        const borderWidth = Math.max(
+          1.5 * (currentCircleSize.current / 100),
+          0.5,
+        );
         circleRef.current.style.borderWidth = `${borderWidth}px`;
         circleRef.current.style.filter = "blur(0.5px)";
 
+        // Accent styling adjustments based on hover
         if (isHoveringLink) {
-          if (darkModeEnabled) {
-            // In dark mode hover, use bright white for high contrast
-            circleRef.current.style.borderColor = "#ffffff";
-            circleRef.current.style.boxShadow = "0 0 12px 2px rgba(255, 255, 255, 0.5)";
-          } else {
-            circleRef.current.style.borderColor = "white";
-            circleRef.current.style.boxShadow = "0 0 12px 2px rgba(255, 255, 255, 0.3)";
-          }
+          circleRef.current.style.borderColor = "var(--accent-color)";
+          circleRef.current.style.boxShadow =
+            "0 0 12px 2px var(--accent-color)";
         } else {
-          // Non-hover state: less pronounced border
-          circleRef.current.style.borderColor = darkModeEnabled ? "#f1f3f4" : "#18181b";
-          circleRef.current.style.boxShadow = "none";
+          circleRef.current.style.borderColor = "var(--accent-color)";
+          circleRef.current.style.boxShadow = "0 0 8px 1px rgba(0, 0, 0, 0.1)";
         }
       }
 
@@ -119,20 +120,12 @@ const MouseBorder = () => {
         dotRef.current.style.height = `${currentDotSize.current}px`;
         dotRef.current.style.transform = `translate(${currentDotPos.current.x - currentHalfDot}px, ${currentDotPos.current.y - currentHalfDot}px)`;
         if (isHoveringLink) {
-          if (darkModeEnabled) {
-            // In dark mode hover: make dot bright and clear
-            dotRef.current.style.backgroundColor = "#ffffff";
-            dotRef.current.style.opacity = 0.8;
-            dotRef.current.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.7)";
-          } else {
-            // Light mode hover settings
-            dotRef.current.style.backgroundColor = "#ffffff";
-            dotRef.current.style.opacity = 0.4;
-            dotRef.current.style.boxShadow = "0 0 10px rgba(59, 130, 246, 0.5)";
-          }
+          dotRef.current.style.backgroundColor = "var(--accent-color)";
+          dotRef.current.style.opacity = 0.9;
+          dotRef.current.style.boxShadow = "0 0 10px 2px var(--accent-color)";
         } else {
-          // Normal state: set dot colors based on theme
-          dotRef.current.style.backgroundColor = darkModeEnabled ? "#f1f3f4" : "#18181b";
+          dotRef.current.style.backgroundColor = "var(--accent-color)";
+          dotRef.current.style.opacity = 0.7;
           dotRef.current.style.boxShadow = "none";
         }
       }
@@ -152,15 +145,14 @@ const MouseBorder = () => {
           position: "fixed",
           top: 0,
           left: 0,
-          border: "1px solid rgba(100, 100, 255, 0.2)",
+          border: "1px solid var(--accent-color)",
           borderRadius: "50%",
           pointerEvents: "none",
           zIndex: 9998,
           willChange: "transform, width, height, opacity, border-width",
-          mixBlendMode: "exclusion",
-          backdropFilter: "blur(2px)",
-          transition: "all 0.1s linear",
-          boxShadow: "0 0 12px 2px rgba(255, 255, 255, 0.3)",
+          backdropFilter: "blur(10px)",
+          transition:
+            "transform 0.1s linear, width 0.1s linear, height 0.1s linear, background-color 0.1s linear, box-shadow 0.1s linear",
         }}
       />
       <div
@@ -171,13 +163,14 @@ const MouseBorder = () => {
           left: 0,
           width: "10px",
           height: "10px",
-          backgroundColor: "#ffffff",
+          backgroundColor: "var(--accent-color)",
           borderRadius: "50%",
           pointerEvents: "none",
-          opacity: 0.6,
           zIndex: 9999,
           willChange: "transform, width, height, background-color, box-shadow",
-          transition: "all 0.1s linear",
+          transition:
+            "transform 0.1s linear, width 0.1s linear, height 0.1s linear, opacity 0.1s linear, border-width 0.1s linear",
+          filter: "brightness(1.2)",
         }}
       />
     </>
