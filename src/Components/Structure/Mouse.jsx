@@ -108,9 +108,11 @@ const MouseBorder = () => {
           circleRef.current.style.borderColor = "var(--accent-color)";
           circleRef.current.style.boxShadow =
             "0 0 12px 2px var(--accent-color)";
+          circleRef.current.style.backdropFilter = "blur(0)";
         } else {
           circleRef.current.style.borderColor = "var(--accent-color)";
           circleRef.current.style.boxShadow = "0 0 8px 1px rgba(0, 0, 0, 0.1)";
+          circleRef.current.style.backdropFilter = "blur(10px)";
         }
       }
 
@@ -121,11 +123,9 @@ const MouseBorder = () => {
         dotRef.current.style.transform = `translate(${currentDotPos.current.x - currentHalfDot}px, ${currentDotPos.current.y - currentHalfDot}px)`;
         if (isHoveringLink) {
           dotRef.current.style.backgroundColor = "var(--accent-color)";
-          dotRef.current.style.opacity = 0.9;
-          dotRef.current.style.boxShadow = "0 0 10px 2px var(--accent-color)";
         } else {
           dotRef.current.style.backgroundColor = "var(--accent-color)";
-          dotRef.current.style.opacity = 0.7;
+          dotRef.current.style.opacity = 0.8;
           dotRef.current.style.boxShadow = "none";
         }
       }
