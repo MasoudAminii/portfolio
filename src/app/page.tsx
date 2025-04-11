@@ -22,7 +22,7 @@ export default function Home() {
 
 function HeroSection() {
   return (
-    <section className="relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[var(--gradiant-from)] to-[--gradiant-to] px-4 py-50">
+    <section className="relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[var(--gradiant-from)] to-[--gradiant-to] px-4 py-30 md:py-50">
       <div className="wrapper container mx-auto">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
@@ -31,24 +31,25 @@ function HeroSection() {
         </div>
         {/* Floating Website Mockups */}
         <HeroProjectAnimation />
-        {/* Circular Text */}
-        <div className="absolute top-1/6 right-1/6 flex items-center justify-center">
-          <CircularText
-            text="Avalable*Avalable*Avalable*"
-            onHover="speedUp"
-            spinDuration={20}
-            className="text-[var(--primary-color)]"
-          />
-          <div className="absolute flex items-center justify-center text-center text-[var(--accent-color)]">
-            <span
-              className={`${getFarsiFont.className} text-9xl leading-10 font-semibold`}
-            >
-              14 April
-            </span>
-          </div>
-        </div>
+
         {/* Main Content */}
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-6">
+          {/* Circular Text */}
+          <div className="absolute -right-[2%] flex items-center justify-center max-md:-bottom-10 md:-top-22 lg:-right-20">
+            <CircularText
+              text="Avalable*Avalable*Avalable*"
+              onHover="speedUp"
+              spinDuration={20}
+              className="text-[var(--primary-color)]"
+            />
+            <div className="absolute text-center text-[var(--accent-color)]">
+              <span
+                className={`${getFarsiFont.className} text-9xl leading-10 font-semibold`}
+              >
+                14 April
+              </span>
+            </div>
+          </div>
           {/* Announcement Badge */}
           <AnimateText>
             <div className="mx-auto flex max-w-max items-center rounded-full bg-[var(--bg-light)] px-4 py-2 backdrop-blur-sm">
@@ -68,7 +69,10 @@ function HeroSection() {
                 </span>
                 <span className="absolute bottom-0 left-0 h-3 w-full rounded-lg bg-[var(--accent-color)] opacity-20"></span>
               </span>{" "}
-              Your Business
+              Your{" "}
+              <span className="relative z-10 text-[var(--accent-color)]">
+                Business
+              </span>
             </h1>
           </AnimateText>
 
