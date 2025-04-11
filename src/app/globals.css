@@ -25,8 +25,12 @@ html {
 }
 
 body {
-  transition-property: opacity, filter, background;
-  background: var(--secondary-color);
+  transition-property: opacity, filter, background-color;
+  background: linear-gradient(
+    to bottom,
+    var(--gradiant-from),
+    var(--gradiant-to)
+  );
   transition-timing-function: linear;
   transition-duration: 300ms;
 }

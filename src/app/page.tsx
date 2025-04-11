@@ -1,19 +1,28 @@
+import localFont from "next/font/local";
+
 import {
   HeroProjectAnimation,
   AnimateText,
 } from "@/Components/Animations/MainAnimations";
+import ScrollVelocity from "@/Components/ui/ScrollVelocity";
+import CircularText from "@/Components/ui/CircularText";
+
+const getFarsiFont = localFont({
+  src: "../../public/fonts/Farsi-Inspired.ttf",
+});
+
 export default function Home() {
   return (
     <div className="">
       <HeroSection />
-      {/* <AboutSection /> */}
+      <AboutSection />
     </div>
   );
 }
 
 function HeroSection() {
   return (
-    <section className="relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[var(--gradiant-from)] to-[--gradiant-to] px-4 py-46 transition-all">
+    <section className="relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[var(--gradiant-from)] to-[--gradiant-to] px-4 py-50">
       <div className="wrapper container mx-auto">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
@@ -22,6 +31,22 @@ function HeroSection() {
         </div>
         {/* Floating Website Mockups */}
         <HeroProjectAnimation />
+        {/* Circular Text */}
+        <div className="absolute top-1/6 right-1/6 flex items-center justify-center">
+          <CircularText
+            text="Avalable*Avalable*Avalable*"
+            onHover="speedUp"
+            spinDuration={20}
+            className="text-[var(--primary-color)]"
+          />
+          <div className="absolute flex items-center justify-center text-center text-[var(--accent-color)]">
+            <span
+              className={`${getFarsiFont.className} text-9xl leading-10 font-semibold`}
+            >
+              14 April
+            </span>
+          </div>
+        </div>
         {/* Main Content */}
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-6">
           {/* Announcement Badge */}
@@ -143,60 +168,16 @@ function HeroSection() {
   );
 }
 
-// function AboutSection() {
-//   return (
-//     <section className="bg-[var(--secondary-color)] px-4 py-16 transition-colors sm:px-6 lg:px-8 dark:bg-[var(--secondary-color)]">
-//       <div className="mx-auto max-w-7xl">
-//         <div className="grid items-center gap-12 lg:grid-cols-2">
-//           {/* Text Content */}
-//           <div className="space-y-6">
-//             <h2 className="text-4xl font-bold text-[var(--primary-color)] md:text-5xl dark:text-[var(--primary-color)]">
-//               Crafting Digital Excellence
-//             </h2>
-
-//             <p className="text-lg font-medium text-[var(--primary-color)] opacity-90 md:text-xl dark:text-[var(--primary-color)]">
-//               <span className="text-[var(--accent-color)]">(//)</span> We
-//               transform ideas into powerful web experiences
-//             </p>
-
-//             <p className="text-base leading-relaxed text-[var(--primary-color)] opacity-80 md:text-lg dark:text-[var(--primary-color)]">
-//               As a forward-thinking web development collective, we specialize in
-//               creating bespoke digital solutions that drive results. Our team
-//               merges cutting-edge technology with intuitive design to build
-//               websites that not only look stunning but perform exceptionally.
-//             </p>
-
-//             <div className="mt-8 flex gap-4">
-//               <a
-//                 href="/portfolio"
-//                 className="hover:bg-opacity-90 rounded-lg bg-[var(--accent-color)] px-6 py-3 font-medium text-white shadow-lg transition-all hover:shadow-xl"
-//               >
-//                 View Our Work
-//               </a>
-//               <a
-//                 href="/team"
-//                 className="px-6 py-3 font-medium text-[var(--accent-color)] underline-offset-4 hover:underline"
-//               >
-//                 Meet the Team
-//               </a>
-//             </div>
-//           </div>
-
-//           {/* Visual Element */}
-//           <div className="group relative">
-//             <div className="absolute inset-0 transform rounded-xl bg-[var(--accent-color)] opacity-10 transition-transform duration-300 group-hover:rotate-3" />
-
-//             <div className="relative transform overflow-hidden rounded-xl bg-gradient-to-br from-[var(--secondary-color)] to-[var(--primary-color)] p-1 transition-transform duration-300 group-hover:-translate-y-2">
-//               <div className="flex h-96 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-//                 {/* Replace this div with your actual image */}
-//                 <div className="text-[var(--primary-color)] opacity-50">
-//                   [Website Showcase]
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
+function AboutSection() {
+  return (
+    <section className="px-4 py-16 transition-colors sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[3000px]">
+        <ScrollVelocity
+          texts={["Learn More About Us,", "Scroll Down"]}
+          className="custom-scroll-text"
+        />
+      </div>
+      <div className="mx-auto max-w-7xl"></div>
+    </section>
+  );
+}
